@@ -1,38 +1,51 @@
+# 💻 HTML & CSS Layouts
 
-
-<h1 align="center" style="color:#facc15;">HTML & CSS Layouts</h1>
-
-<p align="center">
-  Une collection de maquettes modernes codées en HTML5 & CSS3.<br>
-  Objectif : maîtriser la structure front-end, la responsivité et l’esthétique web.
-</p>
+📁 Collection de mises en page et d’interfaces web simples créées pour pratiquer la structure front-end, la responsivité et l'esthétique moderne.
 
 ---
 
-## Aperçus des interfaces + Code source
+## 🧩 Layouts inclus
 
-## Page d’accueil (index.html)
+| Interface | Aperçu |
+|----------|--------|
+| **Page d’accueil** (`index.html`) |  |
+| **Formulaire de contact** (`contact.html`) | |
+| **Login / Register UI** (`login.html`) | |
+| **Grille de produits** (`products.html`) |  |
 
 
+---
 
-<details>
-<summary><strong>Code HTML principal (index.html)</strong></summary>
+## 🛠️ Technologies utilisées
 
-```html
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accueil</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <h1>Bienvenue</h1>
-  </header>
-  <main>
-    <p>Ceci est une landing page simple.</p>
-  </main>
-</body>
-</html>
+- `HTML5`
+- `CSS3 (Flexbox + Grid)`
+- `Media queries` pour le responsive design
+
+---
+
+## 🗂️ Structure du projet
+
+html-css-layouts/
+├── index.html
+├── contact.html
+├── login.html
+├── products.html
+├── style.css
+├── contact.css
+├── login.css
+├── grid.css
+
+
+> Tu peux activer GitHub Pages ici :  
+> `Settings > Pages > Source: main /root`  
+> Le site sera disponible sur :  
+> `https://abdarrhmanessetaoui.github.io/html-css-layouts/`
+
+---
+
+## 👨‍💻 Auteur
+
+**Abderrhman Settaoui**  
+[LinkedIn](https://www.linkedin.com/in/abderrhman-settaoui-33569b305)  
+📧
