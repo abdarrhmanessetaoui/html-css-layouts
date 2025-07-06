@@ -13,9 +13,7 @@
 
 ### 🏠 Page d’accueil (index.html)
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/abdarrhmanessetaoui/html-css-layouts/main/screenshots/index.png" width="70%" alt="Index Page" />
-</div>
+
 
 <details>
 <summary><strong>Code HTML principal (index.html)</strong></summary>
