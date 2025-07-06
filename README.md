@@ -11,7 +11,7 @@
 
 ## Aperçus des interfaces + Code source
 
-### 🏠 Page d’accueil (index.html)
+## Page d’accueil (index.html)
 
 
 
