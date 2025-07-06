@@ -1,10 +1,10 @@
-# 💻 HTML & CSS Layouts
+#  HTML & CSS Layouts
 
-📁 Collection de mises en page et d’interfaces web simples créées pour pratiquer la structure front-end, la responsivité et l'esthétique moderne.
+Collection de mises en page et d’interfaces web simples créées pour pratiquer la structure front-end, la responsivité et l'esthétique moderne.
 
 ---
 
-## 🧩 Layouts inclus
+## Layouts inclus
 
 | Interface | Aperçu |
 |----------|--------|
@@ -16,7 +16,7 @@
 
 ---
 
-## 🛠️ Technologies utilisées
+## Technologies utilisées
 
 - `HTML5`
 - `CSS3 (Flexbox + Grid)`
@@ -24,7 +24,7 @@
 
 ---
 
-## 🗂️ Structure du projet
+##  Structure du projet
 
 html-css-layouts/
 ├── index.html
@@ -44,8 +44,7 @@ html-css-layouts/
 
 ---
 
-## 👨‍💻 Auteur
+##  Auteur
 
 **Abderrhman Settaoui**  
 [LinkedIn](https://www.linkedin.com/in/abderrhman-settaoui-33569b305)  
-📧
