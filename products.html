@@ -483,194 +483,464 @@
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        const navbarToggle = document.getElementById('navbar-toggle');
-        const navbarMenu = document.getElementById('navbar-menu');
+// Mobile Menu Toggle
+const navbarToggle = document.getElementById('navbar-toggle');
+const navbarMenu = document.getElementById('navbar-menu');
 
-        navbarToggle.addEventListener('click', () => {
-            navbarMenu.classList.toggle('navbar__menu--active');
-        });
+navbarToggle.addEventListener('click', () => {
+    navbarMenu.classList.toggle('navbar__menu--active');
+});
 
-        // Product Filtering and Search
-        const searchInput = document.getElementById('search-input');
-        const categoryFilter = document.getElementById('category-filter');
-        const priceFilter = document.getElementById('price-filter');
-        const sortFilter = document.getElementById('sort-filter');
-        const productsGrid = document.getElementById('products-grid');
-        const productsCount = document.getElementById('products-count');
-        const gridViewBtn = document.getElementById('grid-view');
-        const listViewBtn = document.getElementById('list-view');
+// Product Filtering and Search
+const searchInput = document.getElementById('search-input');
+const categoryFilter = document.getElementById('category-filter');
+const priceFilter = document.getElementById('price-filter');
+const sortFilter = document.getElementById('sort-filter');
+const productsGrid = document.getElementById('products-grid');
+const productsCount = document.getElementById('products-count');
+const gridViewBtn = document.getElementById('grid-view');
+const listViewBtn = document.getElementById('list-view');
 
-        // Filter products
-        function filterProducts() {
-            const searchTerm = searchInput.value.toLowerCase();
-            const selectedCategory = categoryFilter.value;
-            const selectedPriceRange = priceFilter.value;
-            const sortBy = sortFilter.value;
-            
-            let products = Array.from(productsGrid.querySelectorAll('.product-card'));
-            let visibleProducts = [];
+// Filter products
+function filterProducts() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const selectedCategory = categoryFilter.value;
+    const selectedPriceRange = priceFilter.value;
+    const sortBy = sortFilter.value;
+    
+    let products = Array.from(productsGrid.querySelectorAll('.product-card'));
+    let visibleProducts = [];
 
-            // Filter by search term
-            products.forEach(product => {
-                const title = product.querySelector('.product-card__title').textContent.toLowerCase();
-                const description = product.querySelector('.product-card__description').textContent.toLowerCase();
-                const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
-                
-                const category = product.dataset.category;
-                const price = parseFloat(product.dataset.price);
-                
-                // Filter by category
-                const matchesCategory = selectedCategory === 'all' || category === selectedCategory;
-                
-                // Filter by price range
-                let matchesPrice = true;
-                if (selectedPriceRange !== 'all') {
-                    const [min, max] = selectedPriceRange.split('-').map(p => p.replace('+', ''));
-                    if (max) {
-                        matchesPrice = price >= parseFloat(min) && price <= parseFloat(max);
-                    } else {
-                        matchesPrice = price >= parseFloat(min);
-                    }
-                }
-                
-                if (matchesSearch && matchesCategory && matchesPrice) {
-                    product.style.display = 'block';
-                    visibleProducts.push(product);
-                } else {
-                    product.style.display = 'none';
-                }
-            });
-
-            // Sort products
-            if (sortBy !== 'name') {
-                visibleProducts.sort((a, b) => {
-                    switch (sortBy) {
-                        case 'price-low':
-                            return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
-                        case 'price-high':
-                            return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
-                        case 'rating':
-                            return parseFloat(b.dataset.rating) - parseFloat(a.dataset.rating);
-                        default:
-                            return 0;
-                    }
-                });
-                
-                // Reorder DOM elements
-                visibleProducts.forEach(product => {
-                    productsGrid.appendChild(product);
-                });
-            }
-
-            // Update products count
-            productsCount.textContent = `Showing ${visibleProducts.length} products`;
-        }
-
-        // Event listeners for filters
-        searchInput.addEventListener('input', filterProducts);
-        categoryFilter.addEventListener('change', filterProducts);
-        priceFilter.addEventListener('change', filterProducts);
-        sortFilter.addEventListener('change', filterProducts);
-
-        // View toggle
-        gridViewBtn.addEventListener('click', () => {
-            productsGrid.classList.remove('products-list');
-            productsGrid.classList.add('products-grid');
-            gridViewBtn.classList.add('view-btn--active');
-            listViewBtn.classList.remove('view-btn--active');
-        });
-
-        listViewBtn.addEventListener('click', () => {
-            productsGrid.classList.remove('products-grid');
-            productsGrid.classList.add('products-list');
-            listViewBtn.classList.add('view-btn--active');
-            gridViewBtn.classList.remove('view-btn--active');
-        });
-
-        // Add to cart functionality
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                const productCard = button.closest('.product-card');
-                const productName = productCard.querySelector('.product-card__title').textContent;
-                
-                // Simple cart animation
-                button.innerHTML = '<i class="fas fa-check"></i> Added!';
-                button.style.backgroundColor = '#10b981';
-                
-                setTimeout(() => {
-                    button.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
-                    button.style.backgroundColor = '';
-                }, 2000);
-                
-                // Show toast notification
-                showToast(`${productName} added to cart!`);
-            });
-        });
-
-        // Wishlist functionality
-        document.querySelectorAll('.action-btn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                const icon = button.querySelector('i');
-                if (icon.classList.contains('fa-heart')) {
-                    if (icon.classList.contains('far')) {
-                        icon.classList.remove('far');
-                        icon.classList.add('fas');
-                        button.style.color = '#ef4444';
-                    } else {
-                        icon.classList.remove('fas');
-                        icon.classList.add('far');
-                        button.style.color = '';
-                    }
-                }
-            });
-        });
-
-        // Toast notification
-        function showToast(message) {
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.textContent = message;
-            toast.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: #10b981;
-                color: white;
-                padding: 1rem 1.5rem;
-                border-radius: 8px;
-                z-index: 10000;
-                animation: slideIn 0.3s ease-out;
-            `;
-            
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.style.animation = 'slideOut 0.3s ease-in';
-                setTimeout(() => {
-                    document.body.removeChild(toast);
-                }, 300);
-            }, 3000);
-        }
-
-        // Modal functionality
-        function showModal(type) {
-            alert(`${type.charAt(0).toUpperCase() + type.slice(1)} information would be displayed here.`);
-        }
-
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.classList.add('header--scrolled');
+    // Filter by search term
+    products.forEach(product => {
+        const title = product.querySelector('.product-card__title').textContent.toLowerCase();
+        const description = product.querySelector('.product-card__description').textContent.toLowerCase();
+        const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
+        
+        const category = product.dataset.category;
+        const price = parseFloat(product.dataset.price);
+        
+        // Filter by category
+        const matchesCategory = selectedCategory === 'all' || category === selectedCategory;
+        
+        // Filter by price range
+        let matchesPrice = true;
+        if (selectedPriceRange !== 'all') {
+            const [min, max] = selectedPriceRange.split('-').map(p => p.replace('+', ''));
+            if (max) {
+                matchesPrice = price >= parseFloat(min) && price <= parseFloat(max);
             } else {
-                header.classList.remove('header--scrolled');
+                matchesPrice = price >= parseFloat(min);
+            }
+        }
+        
+        if (matchesSearch && matchesCategory && matchesPrice) {
+            product.style.display = 'block';
+            visibleProducts.push(product);
+        } else {
+            product.style.display = 'none';
+        }
+    });
+
+    // Sort products
+    if (sortBy !== 'name') {
+        visibleProducts.sort((a, b) => {
+            switch (sortBy) {
+                case 'price-low':
+                    return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+                case 'price-high':
+                    return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+                case 'rating':
+                    return parseFloat(b.dataset.rating) - parseFloat(a.dataset.rating);
+                default:
+                    return 0;
             }
         });
+        
+        // Reorder DOM elements
+        visibleProducts.forEach(product => {
+            productsGrid.appendChild(product);
+        });
+    }
 
-        // Load more products
-        document.getElementById('load-more').addEventListener('click', () => {
-            // Simulate loading more products
-            const button =
+    // Update products count
+    productsCount.textContent = `Showing ${visibleProducts.length} products`;
+}
+
+// Event listeners for filters
+searchInput.addEventListener('input', filterProducts);
+categoryFilter.addEventListener('change', filterProducts);
+priceFilter.addEventListener('change', filterProducts);
+sortFilter.addEventListener('change', filterProducts);
+
+// View toggle
+gridViewBtn.addEventListener('click', () => {
+    productsGrid.classList.remove('products-list');
+    productsGrid.classList.add('products-grid');
+    gridViewBtn.classList.add('view-btn--active');
+    listViewBtn.classList.remove('view-btn--active');
+});
+
+listViewBtn.addEventListener('click', () => {
+    productsGrid.classList.remove('products-grid');
+    productsGrid.classList.add('products-list');
+    listViewBtn.classList.add('view-btn--active');
+    gridViewBtn.classList.remove('view-btn--active');
+});
+
+// Add to cart functionality
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const productCard = button.closest('.product-card');
+        const productName = productCard.querySelector('.product-card__title').textContent;
+        
+        // Simple cart animation
+        button.innerHTML = '<i class="fas fa-check"></i> Added!';
+        button.style.backgroundColor = '#10b981';
+        
+        setTimeout(() => {
+            button.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+            button.style.backgroundColor = '';
+        }, 2000);
+        
+        // Show toast notification
+        showToast(`${productName} added to cart!`);
+    });
+});
+
+// Wishlist functionality
+document.querySelectorAll('.action-btn').forEach(button => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const icon = button.querySelector('i');
+        if (icon.classList.contains('fa-heart')) {
+            if (icon.classList.contains('far')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                button.style.color = '#ef4444';
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                button.style.color = '';
+            }
+        }
+    });
+});
+
+// Toast notification
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    toast.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #10b981;
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        z-index: 10000;
+        animation: slideIn 0.3s ease-out;
+    `;
+    
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.style.animation = 'slideOut 0.3s ease-in';
+        setTimeout(() => {
+            document.body.removeChild(toast);
+        }, 300);
+    }, 3000);
+}
+
+// Modal functionality
+function showModal(type) {
+    alert(`${type.charAt(0).toUpperCase() + type.slice(1)} information would be displayed here.`);
+}
+
+// Header scroll effect
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('.header');
+    if (window.scrollY > 100) {
+        header.classList.add('header--scrolled');
+    } else {
+        header.classList.remove('header--scrolled');
+    }
+});
+
+// Load more products functionality
+document.getElementById('load-more').addEventListener('click', () => {
+    const button = document.getElementById('load-more');
+    const originalText = button.innerHTML;
+    
+    // Show loading state
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+    button.disabled = true;
+    
+    // Simulate loading delay
+    setTimeout(() => {
+        // Create additional product cards
+        const additionalProducts = [
+            {
+                category: 'electronics',
+                price: 399,
+                rating: 4.4,
+                title: 'Bluetooth Speaker',
+                description: 'Portable wireless speaker with premium sound quality',
+                image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=300&fit=crop',
+                badges: ['new']
+            },
+            {
+                category: 'clothing',
+                price: 159,
+                rating: 4.5,
+                title: 'Winter Jacket',
+                description: 'Warm and stylish jacket for cold weather',
+                image: 'https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=400&h=300&fit=crop',
+                badges: []
+            },
+            {
+                category: 'accessories',
+                price: 89,
+                rating: 4.2,
+                title: 'Leather Wallet',
+                description: 'Premium leather wallet with multiple card slots',
+                image: 'https://images.unsplash.com/photo-1627123424574-724758594e93?w=400&h=300&fit=crop',
+                badges: ['sale'],
+                originalPrice: 119
+            },
+            {
+                category: 'sports',
+                price: 249,
+                rating: 4.6,
+                title: 'Fitness Tracker',
+                description: 'Advanced fitness tracking with heart rate monitoring',
+                image: 'https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=400&h=300&fit=crop',
+                badges: ['bestseller']
+            }
+        ];
+        
+        // Add new products to the grid
+        additionalProducts.forEach(product => {
+            const productCard = createProductCard(product);
+            productsGrid.appendChild(productCard);
+        });
+        
+        // Update event listeners for new products
+        updateEventListeners();
+        
+        // Update products count
+        filterProducts();
+        
+        // Reset button
+        button.innerHTML = originalText;
+        button.disabled = false;
+        
+        // Show success message
+        showToast('More products loaded!');
+        
+        // Hide load more button after loading more products
+        if (productsGrid.querySelectorAll('.product-card').length >= 16) {
+            button.style.display = 'none';
+        }
+    }, 1500);
+});
+
+// Function to create product card HTML
+function createProductCard(product) {
+    const productCard = document.createElement('div');
+    productCard.className = 'product-card';
+    productCard.setAttribute('data-category', product.category);
+    productCard.setAttribute('data-price', product.price);
+    productCard.setAttribute('data-rating', product.rating);
+    
+    // Create badges HTML
+    const badgesHTML = product.badges.map(badge => {
+        const badgeClass = badge === 'new' ? 'badge--new' : 
+                          badge === 'sale' ? 'badge--sale' :
+                          badge === 'bestseller' ? 'badge--bestseller' : 
+                          badge === 'hot' ? 'badge--hot' : '';
+        return `<span class="badge ${badgeClass}">${badge.charAt(0).toUpperCase() + badge.slice(1)}</span>`;
+    }).join('');
+    
+    // Create stars HTML
+    const fullStars = Math.floor(product.rating);
+    const hasHalfStar = product.rating % 1 !== 0;
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+    
+    let starsHTML = '';
+    for (let i = 0; i < fullStars; i++) {
+        starsHTML += '<i class="fas fa-star"></i>';
+    }
+    if (hasHalfStar) {
+        starsHTML += '<i class="fas fa-star-half-alt"></i>';
+    }
+    for (let i = 0; i < emptyStars; i++) {
+        starsHTML += '<i class="far fa-star"></i>';
+    }
+    
+    // Create price HTML
+    const priceHTML = product.originalPrice ? 
+        `<span class="price-current">$${product.price}.99</span>
+         <span class="price-original">$${product.originalPrice}.99</span>` :
+        `<span class="price-current">$${product.price}.99</span>`;
+    
+    productCard.innerHTML = `
+        <div class="product-card__image">
+            <img src="${product.image}" alt="${product.title}" loading="lazy">
+            ${badgesHTML ? `<div class="product-card__badges">${badgesHTML}</div>` : ''}
+            <div class="product-card__actions">
+                <button class="action-btn" title="Add to Wishlist">
+                    <i class="far fa-heart"></i>
+                </button>
+                <button class="action-btn" title="Quick View">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </div>
+        </div>
+        <div class="product-card__content">
+            <h3 class="product-card__title">${product.title}</h3>
+            <p class="product-card__description">${product.description}</p>
+            <div class="product-card__rating">
+                <div class="stars">
+                    ${starsHTML}
+                </div>
+                <span class="rating-text">(${product.rating})</span>
+            </div>
+            <div class="product-card__price">
+                ${priceHTML}
+            </div>
+            <button class="btn btn--primary btn--full add-to-cart">
+                <i class="fas fa-shopping-cart"></i>
+                Add to Cart
+            </button>
+        </div>
+    `;
+    
+    return productCard;
+}
+
+// Function to update event listeners for new products
+function updateEventListeners() {
+    // Add to cart functionality for new products
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        // Remove existing listeners to avoid duplicates
+        button.removeEventListener('click', handleAddToCart);
+        button.addEventListener('click', handleAddToCart);
+    });
+    
+    // Wishlist functionality for new products
+    document.querySelectorAll('.action-btn').forEach(button => {
+        // Remove existing listeners to avoid duplicates
+        button.removeEventListener('click', handleWishlist);
+        button.addEventListener('click', handleWishlist);
+    });
+}
+
+// Separate handler functions to avoid duplicate listeners
+function handleAddToCart(e) {
+    e.preventDefault();
+    const productCard = e.target.closest('.product-card');
+    const productName = productCard.querySelector('.product-card__title').textContent;
+    
+    // Simple cart animation
+    e.target.innerHTML = '<i class="fas fa-check"></i> Added!';
+    e.target.style.backgroundColor = '#10b981';
+    
+    setTimeout(() => {
+        e.target.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+        e.target.style.backgroundColor = '';
+    }, 2000);
+    
+    // Show toast notification
+    showToast(`${productName} added to cart!`);
+}
+
+function handleWishlist(e) {
+    e.preventDefault();
+    const icon = e.target.querySelector('i') || e.target;
+    if (icon.classList.contains('fa-heart')) {
+        if (icon.classList.contains('far')) {
+            icon.classList.remove('far');
+            icon.classList.add('fas');
+            e.target.style.color = '#ef4444';
+        } else {
+            icon.classList.remove('fas');
+            icon.classList.add('far');
+            e.target.style.color = '';
+        }
+    }
+}
+
+// Add CSS animations for toast notifications
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+    
+    .header--scrolled {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .products-list .product-card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+    }
+    
+    .products-list .product-card__image {
+        flex: 0 0 200px;
+        margin-right: 1rem;
+    }
+    
+    .products-list .product-card__content {
+        flex: 1;
+    }
+`;
+document.head.appendChild(style);
+
+// Initialize the page
+document.addEventListener('DOMContentLoaded', () => {
+    // Initial filter to set up the products count
+    filterProducts();
+    
+    // Add smooth scrolling for better UX
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+});
