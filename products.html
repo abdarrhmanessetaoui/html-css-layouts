@@ -1,7 +1,676 @@
 <!DOCTYPE html>
-<html>
-<head><title>Products</title><link rel='stylesheet' href='grid.css'></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Areaspo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="grid.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
 <body>
-<div class='grid'>Product Grid Here</div>
-</body>
-</html>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar container">
+            <a href="index.html" class="navbar__brand">
+                <i class="fas fa-cube"></i>
+                Areaspo
+            </a>
+            
+            <ul class="navbar__menu" id="navbar-menu">
+                <li class="navbar__item">
+                    <a href="index.html" class="navbar__link">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="products.html" class="navbar__link navbar__link--active">Products</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="contact.html" class="navbar__link">Contact</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="login.html" class="navbar__link">Login</a>
+                </li>
+            </ul>
+            
+            <button class="navbar__toggle" id="navbar-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="products-hero">
+            <div class="container">
+                <h1 class="products-hero__title">Our Products</h1>
+                <p class="products-hero__subtitle">Discover our wide range of premium products designed to meet your needs</p>
+            </div>
+        </section>
+
+        <!-- Filters Section -->
+        <section class="filters-section">
+            <div class="container">
+                <div class="filters">
+                    <div class="filters__search">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="search-input" placeholder="Search products..." class="search-input">
+                        </div>
+                    </div>
+                    
+                    <div class="filters__controls">
+                        <div class="filter-group">
+                            <label for="category-filter" class="filter-label">Category:</label>
+                            <select id="category-filter" class="filter-select">
+                                <option value="all">All Categories</option>
+                                <option value="electronics">Electronics</option>
+                                <option value="clothing">Clothing</option>
+                                <option value="accessories">Accessories</option>
+                                <option value="sports">Sports</option>
+                                <option value="home">Home & Garden</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="price-filter" class="filter-label">Price Range:</label>
+                            <select id="price-filter" class="filter-select">
+                                <option value="all">All Prices</option>
+                                <option value="0-50">$0 - $50</option>
+                                <option value="50-100">$50 - $100</option>
+                                <option value="100-200">$100 - $200</option>
+                                <option value="200+">$200+</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="sort-filter" class="filter-label">Sort By:</label>
+                            <select id="sort-filter" class="filter-select">
+                                <option value="name">Name</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="rating">Rating</option>
+                                <option value="newest">Newest First</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Grid -->
+        <section class="products-section">
+            <div class="container">
+                <div class="products-stats">
+                    <span id="products-count">Showing 24 products</span>
+                    <div class="view-toggle">
+                        <button id="grid-view" class="view-btn view-btn--active">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button id="list-view" class="view-btn">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="grid" id="products-grid">
+                    <!-- Product Card 1 -->
+                    <div class="product-card" data-category="electronics" data-price="299" data-rating="4.5">
+                        <div class="product-card__image">
+                            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400&h=300&fit=crop" alt="Wireless Headphones" loading="lazy">
+                            <div class="product-card__badges">
+                                <span class="badge badge--sale">Sale</span>
+                            </div>
+                            <div class="product-card__actions">
+                                <button class="action-btn" title="Add to Wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn" title="Quick View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-card__content">
+                            <h3 class="product-card__title">Premium Wireless Headphones</h3>
+                            <p class="product-card__description">High-quality wireless headphones with noise cancellation</p>
+                            <div class="product-card__rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="rating-text">(4.5)</span>
+                            </div>
+                            <div class="product-card__price">
+                                <span class="price-current">$299.99</span>
+                                <span class="price-original">$399.99</span>
+                            </div>
+                            <button class="btn btn--primary btn--full add-to-cart">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 2 -->
+                    <div class="product-card" data-category="clothing" data-price="89" data-rating="4.2">
+                        <div class="product-card__image">
+                            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=300&fit=crop" alt="Cotton T-Shirt" loading="lazy">
+                            <div class="product-card__badges">
+                                <span class="badge badge--new">New</span>
+                            </div>
+                            <div class="product-card__actions">
+                                <button class="action-btn" title="Add to Wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn" title="Quick View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-card__content">
+                            <h3 class="product-card__title">Premium Cotton T-Shirt</h3>
+                            <p class="product-card__description">Comfortable and stylish cotton t-shirt for everyday wear</p>
+                            <div class="product-card__rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="rating-text">(4.2)</span>
+                            </div>
+                            <div class="product-card__price">
+                                <span class="price-current">$89.99</span>
+                            </div>
+                            <button class="btn btn--primary btn--full add-to-cart">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 3 -->
+                    <div class="product-card" data-category="accessories" data-price="149" data-rating="4.8">
+                        <div class="product-card__image">
+                            <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=300&fit=crop" alt="Leather Watch" loading="lazy">
+                            <div class="product-card__badges">
+                                <span class="badge badge--bestseller">Best Seller</span>
+                            </div>
+                            <div class="product-card__actions">
+                                <button class="action-btn" title="Add to Wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn" title="Quick View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-card__content">
+                            <h3 class="product-card__title">Classic Leather Watch</h3>
+                            <p class="product-card__description">Elegant timepiece with genuine leather strap</p>
+                            <div class="product-card__rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="rating-text">(4.8)</span>
+                            </div>
+                            <div class="product-card__price">
+                                <span class="price-current">$149.99</span>
+                            </div>
+                            <button class="btn btn--primary btn--full add-to-cart">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 4 -->
+                    <div class="product-card" data-category="sports" data-price="199" data-rating="4.6">
+                        <div class="product-card__image">
+                            <img src="https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=400&h=300&fit=crop" alt="Running Shoes" loading="lazy">
+                            <div class="product-card__actions">
+                                <button class="action-btn" title="Add to Wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn" title="Quick View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-card__content">
+                            <h3 class="product-card__title">Professional Running Shoes</h3>
+                            <p class="product-card__description">High-performance running shoes with advanced cushioning</p>
+                            <div class="product-card__rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="rating-text">(4.6)</span>
+                            </div>
+                            <div class="product-card__price">
+                                <span class="price-current">$199.99</span>
+                            </div>
+                            <button class="btn btn--primary btn--full add-to-cart">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 5 -->
+                    <div class="product-card" data-category="home" data-price="79" data-rating="4.3">
+                        <div class="product-card__image">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop" alt="Plant Pot" loading="lazy">
+                            <div class="product-card__actions">
+                                <button class="action-btn" title="Add to Wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn" title="Quick View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-card__content">
+                            <h3 class="product-card__title">Ceramic Plant Pot</h3>
+                            <p class="product-card__description">Beautiful ceramic pot perfect for indoor plants</p>
+                            <div class="product-card__rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="rating-text">(4.3)</span>
+                            </div>
+                            <div class="product-card__price">
+                                <span class="price-current">$79.99</span>
+                            </div>
+                            <button class="btn btn--primary btn--full add-to-cart">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 6 -->
+                    <div class="product-card" data-category="electronics" data-price="599" data-rating="4.7">
+                        <div class="product-card__image">
+                            <img src="https://images.unsplash.com/photo-1588423771073-b8903fbb85b5?w=400&h=300&fit=crop" alt="Smartphone" loading="lazy">
+                            <div class="product-card__badges">
+                                <span class="badge badge--hot">Hot</span>
+                            </div>
+                            <div class="product-card__actions">
+                                <button class="action-btn" title="Add to Wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn" title="Quick View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-card__content">
+                            <h3 class="product-card__title">Latest Smartphone</h3>
+                            <p class="product-card__description">Cutting-edge technology with amazing camera quality</p>
+                            <div class="product-card__rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="rating-text">(4.7)</span>
+                            </div>
+                            <div class="product-card__price">
+                                <span class="price-current">$599.99</span>
+                            </div>
+                            <button class="btn btn--primary btn--full add-to-cart">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 7 -->
+                    <div class="product-card" data-category="clothing" data-price="129" data-rating="4.1">
+                        <div class="product-card__image">
+                            <img src="https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=400&h=300&fit=crop" alt="Denim Jacket" loading="lazy">
+                            <div class="product-card__actions">
+                                <button class="action-btn" title="Add to Wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn" title="Quick View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-card__content">
+                            <h3 class="product-card__title">Classic Denim Jacket</h3>
+                            <p class="product-card__description">Timeless denim jacket with modern fit</p>
+                            <div class="product-card__rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="rating-text">(4.1)</span>
+                            </div>
+                            <div class="product-card__price">
+                                <span class="price-current">$129.99</span>
+                            </div>
+                            <button class="btn btn--primary btn--full add-to-cart">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 8 -->
+                    <div class="product-card" data-category="accessories" data-price="49" data-rating="4.4">
+                        <div class="product-card__image">
+                            <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=300&fit=crop" alt="Sunglasses" loading="lazy">
+                            <div class="product-card__badges">
+                                <span class="badge badge--sale">Sale</span>
+                            </div>
+                            <div class="product-card__actions">
+                                <button class="action-btn" title="Add to Wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn" title="Quick View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-card__content">
+                            <h3 class="product-card__title">Designer Sunglasses</h3>
+                            <p class="product-card__description">Stylish sunglasses with UV protection</p>
+                            <div class="product-card__rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="rating-text">(4.4)</span>
+                            </div>
+                            <div class="product-card__price">
+                                <span class="price-current">$49.99</span>
+                                <span class="price-original">$69.99</span>
+                            </div>
+                            <button class="btn btn--primary btn--full add-to-cart">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Load More Button -->
+                <div class="load-more-container">
+                    <button class="btn btn--outline btn--large" id="load-more">
+                        Load More Products
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__section">
+                    <h4>Areaspo</h4>
+                    <p>Your trusted partner for premium products and exceptional service.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer__section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#" onclick="showModal('about')">About Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#" onclick="showModal('shipping')">Shipping Info</a></li>
+                        <li><a href="#" onclick="showModal('returns')">Returns</a></li>
+                        <li><a href="#" onclick="showModal('faq')">FAQ</a></li>
+                        <li><a href="#" onclick="showModal('support')">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Business St, City, State 12345</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@areaspo.com</p>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p>&copy; 2024 Areaspo. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const navbarToggle = document.getElementById('navbar-toggle');
+        const navbarMenu = document.getElementById('navbar-menu');
+
+        navbarToggle.addEventListener('click', () => {
+            navbarMenu.classList.toggle('navbar__menu--active');
+        });
+
+        // Product Filtering and Search
+        const searchInput = document.getElementById('search-input');
+        const categoryFilter = document.getElementById('category-filter');
+        const priceFilter = document.getElementById('price-filter');
+        const sortFilter = document.getElementById('sort-filter');
+        const productsGrid = document.getElementById('products-grid');
+        const productsCount = document.getElementById('products-count');
+        const gridViewBtn = document.getElementById('grid-view');
+        const listViewBtn = document.getElementById('list-view');
+
+        // Filter products
+        function filterProducts() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedCategory = categoryFilter.value;
+            const selectedPriceRange = priceFilter.value;
+            const sortBy = sortFilter.value;
+            
+            let products = Array.from(productsGrid.querySelectorAll('.product-card'));
+            let visibleProducts = [];
+
+            // Filter by search term
+            products.forEach(product => {
+                const title = product.querySelector('.product-card__title').textContent.toLowerCase();
+                const description = product.querySelector('.product-card__description').textContent.toLowerCase();
+                const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
+                
+                const category = product.dataset.category;
+                const price = parseFloat(product.dataset.price);
+                
+                // Filter by category
+                const matchesCategory = selectedCategory === 'all' || category === selectedCategory;
+                
+                // Filter by price range
+                let matchesPrice = true;
+                if (selectedPriceRange !== 'all') {
+                    const [min, max] = selectedPriceRange.split('-').map(p => p.replace('+', ''));
+                    if (max) {
+                        matchesPrice = price >= parseFloat(min) && price <= parseFloat(max);
+                    } else {
+                        matchesPrice = price >= parseFloat(min);
+                    }
+                }
+                
+                if (matchesSearch && matchesCategory && matchesPrice) {
+                    product.style.display = 'block';
+                    visibleProducts.push(product);
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+
+            // Sort products
+            if (sortBy !== 'name') {
+                visibleProducts.sort((a, b) => {
+                    switch (sortBy) {
+                        case 'price-low':
+                            return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+                        case 'price-high':
+                            return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+                        case 'rating':
+                            return parseFloat(b.dataset.rating) - parseFloat(a.dataset.rating);
+                        default:
+                            return 0;
+                    }
+                });
+                
+                // Reorder DOM elements
+                visibleProducts.forEach(product => {
+                    productsGrid.appendChild(product);
+                });
+            }
+
+            // Update products count
+            productsCount.textContent = `Showing ${visibleProducts.length} products`;
+        }
+
+        // Event listeners for filters
+        searchInput.addEventListener('input', filterProducts);
+        categoryFilter.addEventListener('change', filterProducts);
+        priceFilter.addEventListener('change', filterProducts);
+        sortFilter.addEventListener('change', filterProducts);
+
+        // View toggle
+        gridViewBtn.addEventListener('click', () => {
+            productsGrid.classList.remove('products-list');
+            productsGrid.classList.add('products-grid');
+            gridViewBtn.classList.add('view-btn--active');
+            listViewBtn.classList.remove('view-btn--active');
+        });
+
+        listViewBtn.addEventListener('click', () => {
+            productsGrid.classList.remove('products-grid');
+            productsGrid.classList.add('products-list');
+            listViewBtn.classList.add('view-btn--active');
+            gridViewBtn.classList.remove('view-btn--active');
+        });
+
+        // Add to cart functionality
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const productCard = button.closest('.product-card');
+                const productName = productCard.querySelector('.product-card__title').textContent;
+                
+                // Simple cart animation
+                button.innerHTML = '<i class="fas fa-check"></i> Added!';
+                button.style.backgroundColor = '#10b981';
+                
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+                    button.style.backgroundColor = '';
+                }, 2000);
+                
+                // Show toast notification
+                showToast(`${productName} added to cart!`);
+            });
+        });
+
+        // Wishlist functionality
+        document.querySelectorAll('.action-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const icon = button.querySelector('i');
+                if (icon.classList.contains('fa-heart')) {
+                    if (icon.classList.contains('far')) {
+                        icon.classList.remove('far');
+                        icon.classList.add('fas');
+                        button.style.color = '#ef4444';
+                    } else {
+                        icon.classList.remove('fas');
+                        icon.classList.add('far');
+                        button.style.color = '';
+                    }
+                }
+            });
+        });
+
+        // Toast notification
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #10b981;
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                z-index: 10000;
+                animation: slideIn 0.3s ease-out;
+            `;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'slideOut 0.3s ease-in';
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 300);
+            }, 3000);
+        }
+
+        // Modal functionality
+        function showModal(type) {
+            alert(`${type.charAt(0).toUpperCase() + type.slice(1)} information would be displayed here.`);
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.classList.add('header--scrolled');
+            } else {
+                header.classList.remove('header--scrolled');
+            }
+        });
+
+        // Load more products
+        document.getElementById('load-more').addEventListener('click', () => {
+            // Simulate loading more products
+            const button =
