@@ -1,7 +1,196 @@
 <!DOCTYPE html>
-<html>
-<head><title>Landing Page</title><link rel='stylesheet' href='style.css'></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
-<h1>Welcome to Landing Page</h1>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <h2>Your Logo</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#services" class="nav-link">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Welcome to Our Amazing Platform</h1>
+                <p class="hero-subtitle">Transform your business with our innovative solutions and cutting-edge technology</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">Get Started</a>
+                    <a href="#" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-placeholder">
+                    <span>Hero Image</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Us</h2>
+                <p>Discover what makes us unique and why thousands of customers trust us</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Our Story</h3>
+                    <p>We are a team of passionate professionals dedicated to delivering exceptional solutions that drive real results for our clients. With years of experience and a commitment to innovation, we've helped countless businesses achieve their goals.</p>
+                    <ul class="feature-list">
+                        <li>Expert team with 10+ years experience</li>
+                        <li>Proven track record of success</li>
+                        <li>24/7 customer support</li>
+                        <li>Cutting-edge technology</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <div class="about-placeholder">
+                        <span>About Image</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>Comprehensive solutions tailored to your needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <span>🚀</span>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Create stunning, responsive websites that convert visitors into customers</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <span>📱</span>
+                    </div>
+                    <h3>Mobile Apps</h3>
+                    <p>Build native and cross-platform mobile applications for iOS and Android</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <span>🎨</span>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>Design beautiful, intuitive interfaces that provide exceptional user experiences</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <span>⚡</span>
+                    </div>
+                    <h3>Performance</h3>
+                    <p>Optimize your applications for speed, scalability, and reliability</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Get Started?</h2>
+                <p>Join thousands of satisfied customers and take your business to the next level</p>
+                <a href="#" class="btn btn-primary">Start Your Journey</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Your Company</h3>
+                    <p>Building innovative solutions for the digital world</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>Email: info@company.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Your Company. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
